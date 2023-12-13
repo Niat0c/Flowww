@@ -1,0 +1,220 @@
+
+/* ****************
+    FORM
+**************** */
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /*font-size: 16px;*/
+  cursor:pointer;
+}
+
+input.inTxt, input.inTxt:active, input.inTxt:focus {
+  padding-left: 35px;
+  border: solid 1px #4800ff;
+  color: #4800ff;
+  display: block;
+  width: 75%;
+  margin: auto;
+}
+
+input.btn {
+  text-align: center;
+  background: #4800ff;
+  display: block;
+  width: 75%;
+  margin: 5px auto;
+  border-radius: 25px;
+}
+
+  input.btn:focus, input.btn:active, input.btn:hover {
+    color: #fff;
+    cursor: pointer;
+  }
+/*input.inTxt:active {
+    border: solid 1px #4800ff;
+  }*/
+.row {
+  display: block;
+}
+
+
+
+/* ****************
+    BUSCADOR
+**************** */
+.Buscador {
+  width: 400px;
+  background-color: #ffffff;
+  margin: auto;
+  padding: 0;
+  border:solid 2px #4800ff;
+  border-radius:15px;
+}
+  .Buscador .titulo {
+    color: #4800ff;
+    text-align: center;
+    font-variant:small-caps;
+    height:60px;
+  }
+  .Buscador form {
+    text-align: center;
+    height: 115px;
+  }
+
+  .Buscador.SinResultados{
+      margin-top:15%;
+  }
+
+.bntPaginado {
+  font-size: 1em;
+  padding: initial 3px;
+  border: 1px solid #4800ff;
+  cursor:pointer;
+}
+  .bntPaginado:hover {
+    color: #fefefe;
+    background-color: #4800ff;
+  }
+  /* ****************
+    RESULTADOS
+**************** */
+  .resultados {
+    max-width: 1300px;
+    margin: auto;
+    text-align: center;
+  }
+.flex {
+  display: inline-block;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: solid #000 3px;
+  border-radius: 5px;
+  margin: 0 3px 3px 0;
+  width: 250px;
+  height: 325px;
+  background: #F9F9F9;
+  filter: opacity(.5);
+  transition: all .5s ease-in-out;
+}
+  .flex:hover {
+    filter: none;
+    cursor:pointer;
+  }
+
+  .flex > div {
+    margin: 0 1rem 2rem 1rem;
+    text-align: center;
+  }
+
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* **************
+    MODAL
+************** */
+.modal {
+  display: fixed;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.4); 
+}
+  .modal .modal-content {
+    background-color: #fefefe;
+    margin: 15px auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+    .modal .modal-content .modal-col{
+        width:45%;
+        margin:1%;
+        display:inline-block;
+        vertical-align:text-top;
+    }
+  .modal .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal img {
+    filter: grayscale(80%);
+    transition: all .5s ease-in-out;
+  }
+  .modal img:hover {
+    filter: none;
+  }
+
+/* ***************
+******************
+    TABLET
+******************
+*************** */
+  @media (min-width: 600px) and (max-width: 900px) {
+  .flex {
+    width: 48%;
+    height: 500px;
+    margin: 0 1% 1% 0;
+  }
+  .Buscador {
+    width: 90%;
+    margin: auto;
+  }
+  input.inTxt {
+      width:80%;
+  }
+    .modal .modal-content .modal-col {
+      width: 98%;
+      margin: 1%;
+      display: block;
+    }
+}
+
+/* ***************
+******************
+    MOBIL
+******************
+*************** */
+@media screen and (max-width: 600px) {
+  .flex {
+    width: 99%;
+    height: 500px;
+    margin: 1% 0;
+  }
+  .Buscador {
+      width:90%;
+      margin: auto;
+  }
+  .modal .modal-content .modal-col {
+    width: 98%;
+    margin: 1%;
+    display: block;
+  }
+}
+
