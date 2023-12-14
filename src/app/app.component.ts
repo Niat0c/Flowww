@@ -29,6 +29,7 @@ export class AppLogin implements OnInit {
   public PaginasTotales: number = 0;
   private strUltimaBusqueda: String = "";
   public blnLoading: Boolean = false;
+  public MensajeError: any = { "Mensaje": "", "Tipo": "Error", "Mostrar": false };//"Tipo": "Error|Succes|Info"
 
 
   constructor(private http: HttpClient) { };
@@ -41,11 +42,17 @@ export class AppLogin implements OnInit {
 
     //Validaciones
     if (blnSeguir && (form.value.strUser).toUpperCase() == "FLOWWW") {
-      alert("Palabra prohibida");
+      //alert("Palabra prohibida");
+      this.MensajeError.Mensaje = "Palabra prohibida";
+      this.MensajeError.Visible = true;
+      setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
       blnSeguir = false;
     }
     if (blnSeguir && (form.value.strUser).length < 4) {
-      alert("La busqueda debe de tener minimo 4 caracteres");
+      //alert("La busqueda debe de tener minimo 4 caracteres");
+      this.MensajeError.Mensaje = "La busqueda debe de tener minimo 4 caracteres";
+      this.MensajeError.Visible = true;
+      setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
       blnSeguir = false;
     }
 
@@ -78,15 +85,35 @@ export class AppLogin implements OnInit {
 
       //Comprobamos si existe el login
       if (this.jsonResultado != undefined) {
-        //alert("Buscando " + strBusqueda);
-        this.strToken = this.GenerateToken();
-        this.blnLoading = false;
+        if (this.jsonResultado.length > 0) {
+          //alert("Buscando " + strBusqueda);
+          this.strToken = this.GenerateToken();
+          this.blnLoading = false;
+        } else {
+          //alert("Busqueda sin resultados");
+          this.MensajeError.Mensaje = "Busqueda sin resultados";
+          this.MensajeError.Tipo = "info";
+          this.MensajeError.Visible = true;
+          setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
+        }
       } else {
-        alert("Busqueda erronea");
+        //alert("Busqueda erronea");
+        this.MensajeError.Mensaje = "Busqueda erronea";
+        this.MensajeError.Visible = true;
+        setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
         this.blnLoading = false;
       }
     });
-  }
+  };
+  public fnBusquedaLimpiar() {
+    this.jsonResultado = undefined;
+
+    //alert("Busqueda sin resultados");
+    this.MensajeError.Mensaje = "Busqueda limpiada correctamente";
+    this.MensajeError.Tipo = "Succes";
+    this.MensajeError.Visible = true;
+    setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
+  };
 
   //Generamos token de session
   private GenerateToken() {
@@ -97,7 +124,7 @@ export class AppLogin implements OnInit {
       text += CaracteresPermitidos.charAt(Math.floor(Math.random() * CaracteresPermitidos.length));
     }
     return text;
-  }
+  };
 
   //Cargamos el JSON de los usuarios
   private LoginUsers(login: String, PaginaActual: number) {
@@ -125,7 +152,7 @@ export class AppLogin implements OnInit {
   public fnPaginaPrim() {
     this.PaginaActual = 1;
     this.fnNuevaBusqueda(this.strUltimaBusqueda);
-  }
+  };
   public fnPaginaSig() {
     if (this.PaginaActual < this.PaginasTotales) {
       this.PaginaActual = this.PaginaActual + 1;
@@ -133,16 +160,18 @@ export class AppLogin implements OnInit {
       this.fnNuevaBusqueda(this.strUltimaBusqueda);
     }
 
-  }
+  };
   public fnPaginaAnt() {
     if (this.PaginaActual > 1) {
       this.PaginaActual = this.PaginaActual - 1;
       this.fnNuevaBusqueda(this.strUltimaBusqueda);
     }
-  }
+  };
   public fnPaginaUlt() {
     this.PaginaActual = this.PaginasTotales;
     if ((this.RegistrosPagina * this.PaginaActual) > 30) { this.PaginaActual = Math.ceil(30 / this.RegistrosPagina); } //Esto lo hacemos puesto que la API no devuelve mas de 30 registros
     this.fnNuevaBusqueda(this.strUltimaBusqueda);
-  }
+  };
 }
+
+

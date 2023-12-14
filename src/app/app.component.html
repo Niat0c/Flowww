@@ -4,8 +4,9 @@
   <div class="titulo">
     <h1>{{title}}</h1>
   </div>
-  <form #frmLogin="ngForm" (ngSubmit)="onSubmit(frmLogin)" >
-    <input type="text" class="inTxt" id="strUser" name="strUser" autofocus="autofocus" minlength="4" required placeholder="Nombre de usuario" autocomplete="off" ngModel />
+  <form #frmLogin="ngForm" (ngSubmit)="onSubmit(frmLogin)">
+    <input type="text" class="inTxt" id="strUser" name="strUser" autofocus="autofocus" minlength="4" maxlength="35" required placeholder="Nombre de usuario" autocomplete="off" ngModel />
+    <input type="reset" (click)="fnBusquedaLimpiar()" value="Limpiar" class="btn" *ngIf="jsonResultado != undefined" />
     <input type="submit" value="Buscar" class="btn" />
   </form>
 </div>
@@ -25,15 +26,16 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
-     <p>Total resultados: {{TotalRegistrosBusqueda}} | Pagina: 
-       <span title="Primera p&aacute;gina" (click)="fnPaginaPrim()" class="material-symbols-outlined bntPaginado">skip_previous</span>
-       <span title="P&aacute;gina anterior" (click)="fnPaginaAnt()" class="material-symbols-outlined bntPaginado">navigate_before</span>
-       {{PaginaActual}}/{{PaginasTotales}}
-       <span title="Siguiente p&aacute;gina" (click)="fnPaginaSig()"class="material-symbols-outlined bntPaginado">navigate_next</span>
-       <span title="&Uacute;ltima p&aacute;gina" (click)="fnPaginaUlt()" class="material-symbols-outlined bntPaginado">skip_next</span>
-       </p>
+    <p>
+      Total resultados: {{TotalRegistrosBusqueda}} | Pagina:
+      <span title="Primera p&aacute;gina" (click)="fnPaginaPrim()" class="material-symbols-outlined bntPaginado">skip_previous</span>
+      <span title="P&aacute;gina anterior" (click)="fnPaginaAnt()" class="material-symbols-outlined bntPaginado">navigate_before</span>
+      {{PaginaActual}}/{{PaginasTotales}}
+      <span title="Siguiente p&aacute;gina" (click)="fnPaginaSig()" class="material-symbols-outlined bntPaginado">navigate_next</span>
+      <span title="&Uacute;ltima p&aacute;gina" (click)="fnPaginaUlt()" class="material-symbols-outlined bntPaginado">skip_next</span>
+    </p>
   </div>
 
 </div>
@@ -67,3 +69,8 @@
     </div>
   </div>
 </div>
+
+<!-- Alerts -->
+<div class="jsAlert {{MensajeError.Tipo}}" *ngIf="MensajeError!=undefined && MensajeError.Visible">
+  {{MensajeError.Mensaje}}
+</div> 

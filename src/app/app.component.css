@@ -5,6 +5,7 @@
 hr {
   border-color: #4800ff
 }
+
 input {
   width: 100%;
   padding: 12px 20px;
@@ -21,7 +22,8 @@ input {
   text-decoration: none;
   display: inline-block;
   /*font-size: 16px;*/
-  cursor:pointer;
+  cursor: pointer;
+  width:auto;
 }
 
 input.inTxt, input.inTxt:active, input.inTxt:focus {
@@ -36,10 +38,11 @@ input.inTxt, input.inTxt:active, input.inTxt:focus {
 input.btn {
   text-align: center;
   background: #4800ff;
-  display: block;
-  width: 75%;
-  margin: 5px auto;
+  display: inline-block;
+  /*width: 75%;*/
+  margin: 5px 2px;
   border-radius: 25px;
+  text-emphasis-position:right;
 }
 
   input.btn:focus, input.btn:active, input.btn:hover {
@@ -53,52 +56,85 @@ input.btn {
   display: block;
 }
 
-
-
 /* ****************
+    ALERTS
+**************** */
+.jsAlert {
+  position: fixed;
+  bottom:10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  width:calc(99% - 30px);
+  /*Default*/
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+  .jsAlert.Error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+  .jsAlert.Succes {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  .jsAlert.Info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  /* ****************
     BUSCADOR
 **************** */
-.Buscador {
-  width: 400px;
-  background-color: #ffffff;
-  margin: auto;
-  padding: 0;
-  border:solid 2px #4800ff;
-  border-radius:15px;
-}
+  .Buscador {
+    width: 400px;
+    background-color: #ffffff;
+    margin: auto;
+    padding: 0;
+    border: solid 2px #4800ff;
+    border-radius: 15px;
+  }
+
   .Buscador .titulo {
     color: #4800ff;
     text-align: center;
-    font-variant:small-caps;
-    height:60px;
+    font-variant: small-caps;
+    height: 60px;
   }
+
   .Buscador form {
     text-align: center;
     height: 115px;
   }
 
-  .Buscador.SinResultados{
-      margin-top:15%;
+  .Buscador.SinResultados {
+    margin-top: 15%;
   }
 
 .bntPaginado {
   font-size: 1em;
   padding: initial 3px;
   border: 1px solid #4800ff;
-  cursor:pointer;
+  cursor: pointer;
 }
+
   .bntPaginado:hover {
     color: #fefefe;
     background-color: #4800ff;
   }
-  /* ****************
+/* ****************
     RESULTADOS
 **************** */
-  .resultados {
-    max-width: 1300px;
-    margin: auto;
-    text-align: center;
-  }
+.resultados {
+  max-width: 1300px;
+  margin: auto;
+  text-align: center;
+}
+
 .flex {
   display: inline-block;
   flex-wrap: wrap;
@@ -113,9 +149,10 @@ input.btn {
   filter: opacity(.5);
   transition: all .5s ease-in-out;
 }
+
   .flex:hover {
     filter: none;
-    cursor:pointer;
+    cursor: pointer;
   }
 
   .flex > div {
@@ -135,7 +172,7 @@ img {
   display: fixed;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 1;
@@ -143,8 +180,9 @@ img {
   height: 100%;
   overflow: auto;
   background-color: #000;
-  background-color: rgba(0,0,0,0.4); 
+  background-color: rgba(0,0,0,0.4);
 }
+
   .modal .modal-content {
     background-color: #fefefe;
     margin: 15px auto;
@@ -152,12 +190,14 @@ img {
     border: 1px solid #888;
     width: 80%;
   }
-    .modal .modal-content .modal-col{
-        width:45%;
-        margin:1%;
-        display:inline-block;
-        vertical-align:text-top;
+
+    .modal .modal-content .modal-col {
+      width: 45%;
+      margin: 1%;
+      display: inline-block;
+      vertical-align: text-top;
     }
+
   .modal .close {
     color: #aaaaaa;
     float: right;
@@ -169,36 +209,40 @@ img {
   .modal img {
     filter: grayscale(80%);
     transition: all .5s ease-in-out;
-    border-radius:50%;
+    border-radius: 50%;
   }
-  .modal img:hover {
-    filter: none;
-    border-radius:0px;
-  }
+
+    .modal img:hover {
+      filter: none;
+      border-radius: 0px;
+    }
 
 /* ***************
 ******************
     TABLET
 ******************
 *************** */
-  @media (min-width: 600px) and (max-width: 900px) {
+@media (min-width: 600px) and (max-width: 900px) {
   .flex {
     width: 48%;
     height: 500px;
     margin: 0 1% 1% 0;
   }
+
   .Buscador {
     width: 90%;
     margin: auto;
   }
+
   input.inTxt {
-      width:80%;
+    width: 80%;
   }
-    .modal .modal-content .modal-col {
-      width: 98%;
-      margin: 1%;
-      display: block;
-    }
+
+  .modal .modal-content .modal-col {
+    width: 98%;
+    margin: 1%;
+    display: block;
+  }
 }
 
 /* ***************
@@ -212,14 +256,15 @@ img {
     height: 500px;
     margin: 1% 0;
   }
+
   .Buscador {
-      width:90%;
-      margin: auto;
+    width: 90%;
+    margin: auto;
   }
+
   .modal .modal-content .modal-col {
     width: 98%;
     margin: 1%;
     display: block;
   }
 }
-
