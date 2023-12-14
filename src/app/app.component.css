@@ -2,6 +2,9 @@
 /* ****************
     FORM
 **************** */
+hr {
+  border-color: #4800ff
+}
 input {
   width: 100%;
   padding: 12px 20px;
@@ -10,7 +13,7 @@ input {
 }
 
 .btn {
-  background-color: #04AA6D;
+  background-color: #4800ff;
   border: none;
   color: white;
   padding: 14px 28px;
@@ -101,7 +104,7 @@ input.btn {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border: solid #000 3px;
+  border: solid #4800ff 3px;
   border-radius: 5px;
   margin: 0 3px 3px 0;
   width: 250px;
@@ -166,9 +169,11 @@ img {
   .modal img {
     filter: grayscale(80%);
     transition: all .5s ease-in-out;
+    border-radius:50%;
   }
   .modal img:hover {
     filter: none;
+    border-radius:0px;
   }
 
 /* ***************
