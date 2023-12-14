@@ -5,7 +5,7 @@
     <h1>{{title}}</h1>
   </div>
   <form #frmLogin="ngForm" (ngSubmit)="onSubmit(frmLogin)" >
-    <input type="text" class="inTxt" id="strUser" name="strUser" autofocus="autofocus" minlength="4" required placeholder="Nombre de usuario" ngModel />
+    <input type="text" class="inTxt" id="strUser" name="strUser" autofocus="autofocus" minlength="4" required placeholder="Nombre de usuario" autocomplete="off" ngModel />
     <input type="submit" value="Buscar" class="btn" />
   </form>
 </div>
