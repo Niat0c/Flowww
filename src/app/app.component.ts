@@ -129,7 +129,7 @@ export class AppLogin implements OnInit {
   //Cargamos el JSON de los usuarios
   private LoginUsers(login: String, PaginaActual: number) {
     if (PaginaActual == undefined) { PaginaActual = 1; }
-    return this.http.get('https://api.github.com/search/users?q=' + login + '+in:login&per_page=' + this.RegistrosPagina + '&page=' + PaginaActual);
+    return this.http.get('https://api.github.com/search/users?q=' + login.replaceAll(' ','') + '+in:login&per_page=' + this.RegistrosPagina + '&page=' + PaginaActual);
   };
 
   ngOnInit(): void {
@@ -156,7 +156,15 @@ export class AppLogin implements OnInit {
   public fnPaginaSig() {
     if (this.PaginaActual < this.PaginasTotales) {
       this.PaginaActual = this.PaginaActual + 1;
-      if ((this.RegistrosPagina * this.PaginaActual) > 30) { this.PaginaActual = Math.ceil(30 / this.RegistrosPagina); } //Esto lo hacemos puesto que la API no devuelve mas de 30 registros
+      if ((this.RegistrosPagina * this.PaginaActual) > 30) { //Esto lo hacemos puesto que la API no devuelve mas de 30 registros
+        this.PaginaActual = Math.ceil(30 / this.RegistrosPagina);
+
+        //alert("Pagina limite, API de pruebas.";);
+        this.MensajeError.Mensaje = "Pagina limite, API de pruebas.";
+        this.MensajeError.Tipo = "Info";
+        this.MensajeError.Visible = true;
+        setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
+      }
       this.fnNuevaBusqueda(this.strUltimaBusqueda);
     }
 
@@ -169,7 +177,15 @@ export class AppLogin implements OnInit {
   };
   public fnPaginaUlt() {
     this.PaginaActual = this.PaginasTotales;
-    if ((this.RegistrosPagina * this.PaginaActual) > 30) { this.PaginaActual = Math.ceil(30 / this.RegistrosPagina); } //Esto lo hacemos puesto que la API no devuelve mas de 30 registros
+    if ((this.RegistrosPagina * this.PaginaActual) > 30) { //Esto lo hacemos puesto que la API no devuelve mas de 30 registros
+      this.PaginaActual = Math.ceil(30 / this.RegistrosPagina);
+
+      //alert("Pagina limite, API de pruebas.";);
+      this.MensajeError.Mensaje = "Pagina limite, API de pruebas.";
+      this.MensajeError.Tipo = "Info";
+      this.MensajeError.Visible = true;
+      setTimeout(() => { this.MensajeError.Visible = false; this.MensajeError.Tipo = "Error"; }, 3000);
+    }
     this.fnNuevaBusqueda(this.strUltimaBusqueda);
   };
 }
